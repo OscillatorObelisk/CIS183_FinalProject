@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context=".UpdateUser">
+
+    <TextView
+        android:id="@+id/tv_v_updateuser_emailerror"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email Already In Use"
+        android:textColor="#B82525"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_updateuser_email"
+        app:layout_constraintStart_toStartOf="@+id/et_v_updateuser_email" />
+
+    <TextView
+        android:id="@+id/tv_v_updateuser_unameerror"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username Already Taken"
+        android:textColor="#B82525"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_updateuser_username"
+        app:layout_constraintStart_toStartOf="@+id/et_v_updateuser_username" />
+
+    <EditText
+        android:id="@+id/et_v_updateuser_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="@+id/et_v_updateuser_password"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_updateuser_password" />
+
+    <EditText
+        android:id="@+id/et_v_updateuser_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="12dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView34"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_updateuser_username" />
+
+    <Button
+        android:id="@+id/btn_v_updateuser_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="83dp"
+        android:text="update"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="3dp"
+        android:text="Password:"
+        app:layout_constraintEnd_toStartOf="@+id/et_v_updateuser_password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_v_updateuser_password" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="53dp"
+        android:text="Email:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView34" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:text="View/Update Account"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="142dp"
+        android:layout_marginEnd="2dp"
+        android:text="Username:"
+        app:layout_constraintEnd_toStartOf="@+id/et_v_updateuser_username"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_v_updateuser_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="49dp"
+        android:text="back"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_v_updateuser_update"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_v_updateuser_update" />
+
+    <EditText
+        android:id="@+id/et_v_updateuser_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView32"
+        app:layout_constraintTop_toTopOf="@+id/textView32" />
+
+    <TextView
+        android:id="@+id/tv_v_updateuser_emptyerror"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="175dp"
+        android:layout_marginBottom="174dp"
+        android:text="Please fill out all fields"
+        android:textColor="#B82525"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_updateuser_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView34" />
+</androidx.constraintlayout.widget.ConstraintLayout>

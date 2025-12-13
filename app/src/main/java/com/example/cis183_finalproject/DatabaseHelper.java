@@ -5,6 +5,9 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper
 {
@@ -15,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String reviews_table_name = "reviews";
     public DatabaseHelper(Context c)
     {
-        super(c, database_name, null,1);
+        super(c, database_name, null,3);
     }
     @Override
     public void onCreate(SQLiteDatabase db)
@@ -23,8 +26,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.execSQL(
                 "CREATE TABLE " + users_table_name +
                         "(userid integer primary key autoincrement not null, " +
-                        "username text, " +
-                        "email text, " +
+                        "username text unique, " +
+                        "email text unique, " +
                         "password text);"
         );
         db.execSQL(
@@ -221,9 +224,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
         //run the query
         Cursor cursor = db.rawQuery(selectAll, null);
 
-        //move the cursor to the first record
-        cursor.moveToFirst();
-
         User user = null;
         if(cursor.moveToFirst())
         {
@@ -238,6 +238,23 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.close();
         
         return user;
+    }
+    public String getUnameGivenId(int i)
+    {
+        String selectstatement = "SELECT username FROM " + users_table_name + " WHERE userid = '" + i + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectstatement, null);
+
+        if(cursor.moveToFirst())
+        {
+            String uname = cursor.getString(cursor.getColumnIndexOrThrow("username"));
+            cursor.close();
+            db.close();
+
+            return uname;
+        }
+
+        return "failed";
     }
     public boolean doesUsernameExist(String u)
     {
@@ -304,5 +321,416 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 u.getPassword() + "');");
         //close database
         db.close();
+    }
+
+    public void addMovieToDatabase(Movie m)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("INSERT INTO " +
+                movies_table_name +
+                "(userid, title, synopsis, year) VALUES ('" +
+                m.getUserid() + "','" +
+                m.getTitle() + "','" +
+                m.getSynopsis() + "','" +
+                m.getYear() + "');");
+        //close database
+        db.close();
+    }
+
+    public void deleteMovie(int m)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //delete all reviews tied to it first
+        String deleteReviews = "DELETE FROM " + reviews_table_name +
+                " WHERE movieid = " + m;
+        db.execSQL(deleteReviews);
+
+        String deleteMovie = "DELETE FROM " + movies_table_name +
+                " WHERE movieid = " + m;
+        db.execSQL(deleteMovie);
+
+        db.close();
+    }
+
+    public void addReviewToDatabase(Review r)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //Log.d("CRASH", "did we get into the database add review function?");
+
+        db.execSQL("INSERT INTO " +
+                reviews_table_name +
+                "(userid, movieid, score, text, date) VALUES ('" +
+                r.getUserid() + "','" +
+                r.getMovieid() + "','" +
+                r.getScore() + "','" +
+                r.getText() + "','" +
+                r.getDate() + "');");
+        //close database
+        db.close();
+    }
+
+    public void deleteReview(int r)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String delete = "DELETE FROM " + reviews_table_name +
+                " WHERE reviewid = " + r;
+        db.execSQL(delete);
+
+        db.close();
+    }
+
+
+    public ArrayList<Movie> getAllMovies()
+    {
+        ArrayList<Movie> listMovies = new ArrayList<>();
+
+        String selectStatement = "SELECT * FROM " + movies_table_name + ";";
+
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(selectStatement, null);
+
+        if(cursor.moveToFirst())
+        {
+            do
+            {
+                //we will receive many columns from the query
+                int movieid = cursor.getInt(cursor.getColumnIndexOrThrow("movieid"));
+                int userid = cursor.getInt(cursor.getColumnIndexOrThrow("userid"));
+                String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+                String synopsis = cursor.getString(cursor.getColumnIndexOrThrow("synopsis"));
+                int year = cursor.getInt(cursor.getColumnIndexOrThrow("year"));
+
+
+                Movie mov = new Movie();
+                mov.setMovieid(movieid);
+                mov.setUserid(userid);
+                mov.setTitle(title);
+                mov.setSynopsis(synopsis);
+                mov.setYear(year);
+
+                listMovies.add(mov);
+            }
+            while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return listMovies;
+    }
+
+    public ArrayList<Movie> getAllMoviesGivenCriteria(String username, String title, String year)
+    {
+        ArrayList<Movie> listMovies = new ArrayList<>();
+
+        String selectStatement = "SELECT movies.* FROM " + movies_table_name +
+                " INNER JOIN " + users_table_name +
+                " ON movies.userid = users.userid " +
+                "WHERE ";
+
+        // username
+        if (!username.isEmpty())
+        {
+            selectStatement += "LOWER(users.username) LIKE LOWER('%" + username + "%') AND ";
+        }
+
+        // title
+        if (!title.isEmpty())
+        {
+            selectStatement += "LOWER(movies.title) LIKE LOWER('%" + title + "%') AND ";
+        }
+
+        // year
+        if (!year.isEmpty())
+        {
+            selectStatement += "movies.year = " + year + " AND ";
+        }
+
+        selectStatement = selectStatement.substring(0, selectStatement.length() - 5);
+
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(selectStatement, null);
+
+        if(cursor.moveToFirst())
+        {
+            do
+            {
+                Movie mov = new Movie();
+                mov.setMovieid(cursor.getInt(cursor.getColumnIndexOrThrow("movieid")));
+                mov.setUserid(cursor.getInt(cursor.getColumnIndexOrThrow("userid")));
+                mov.setTitle(cursor.getString(cursor.getColumnIndexOrThrow("title")));
+                mov.setSynopsis(cursor.getString(cursor.getColumnIndexOrThrow("synopsis")));
+                mov.setYear(cursor.getInt(cursor.getColumnIndexOrThrow("year")));
+
+                listMovies.add(mov);
+            }
+            while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return listMovies;
+    }
+
+    public ArrayList<Review> getReviewsGivenCriteria(String movieId, String userId, String score, boolean newest)
+    {
+        ArrayList<Review> listReviews = new ArrayList<>();
+
+        String selectStatement = "SELECT * FROM " + reviews_table_name + " WHERE ";
+
+        // Movie ID
+        if (!movieId.isEmpty())
+        {
+            selectStatement += "movieid = " + movieId + " AND ";
+        }
+
+        // User ID
+        if (!userId.isEmpty())
+        {
+            selectStatement += "userid = " + userId + " AND ";
+        }
+
+        // Score
+        if (!score.isEmpty())
+        {
+            selectStatement += "score = " + score + " AND ";
+        }
+
+        selectStatement = selectStatement.substring(0, selectStatement.length() - 5);
+
+        // Newest / Oldest
+        if (newest)
+            selectStatement += " ORDER BY date DESC";
+        else
+            selectStatement += " ORDER BY date ASC";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectStatement, null);
+
+        if (cursor.moveToFirst())
+        {
+            do
+            {
+                Review r = new Review();
+
+                r.setReviewid(cursor.getInt(cursor.getColumnIndexOrThrow("reviewid")));
+                r.setUserid(cursor.getInt(cursor.getColumnIndexOrThrow("userid")));
+                r.setMovieid(cursor.getInt(cursor.getColumnIndexOrThrow("movieid")));
+                r.setScore(cursor.getInt(cursor.getColumnIndexOrThrow("score")));
+                r.setText(cursor.getString(cursor.getColumnIndexOrThrow("text")));
+                r.setDate(cursor.getString(cursor.getColumnIndexOrThrow("date")));
+
+                listReviews.add(r);
+            }
+            while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return listReviews;
+    }
+    public ArrayList<Movie> getMoviesGivenUserId(int i)
+    {
+        ArrayList<Movie> listMovies = new ArrayList<>();
+
+        String selectstatement = "SELECT * FROM " + movies_table_name + " WHERE userid = " + i;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectstatement, null);
+
+        if(cursor.moveToFirst())
+        {
+            do
+            {
+                Movie mov = new Movie();
+                mov.setMovieid(cursor.getInt(cursor.getColumnIndexOrThrow("movieid")));
+                mov.setUserid(cursor.getInt(cursor.getColumnIndexOrThrow("userid")));
+                mov.setTitle(cursor.getString(cursor.getColumnIndexOrThrow("title")));
+                mov.setSynopsis(cursor.getString(cursor.getColumnIndexOrThrow("synopsis")));
+                mov.setYear(cursor.getInt(cursor.getColumnIndexOrThrow("year")));
+
+                listMovies.add(mov);
+            }
+            while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return listMovies;
+    }
+
+    public String getMovieNameGivenId(int i)
+    {
+        String selectstatement = "SELECT title FROM " + movies_table_name + " WHERE movieid = '" + i + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectstatement, null);
+
+        String title = "failed";
+        if(cursor.moveToFirst())
+        {
+            title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+        }
+        cursor.close();
+        db.close();
+
+        return title;
+    }
+
+    public Movie getMoviegivenId(int i)
+    {
+        String selectstatement = "SELECT * FROM " + movies_table_name + " WHERE movieid = " + i;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectstatement, null);
+
+        Movie mov = new Movie();
+
+        if(cursor.moveToFirst())
+        {
+
+            mov.setMovieid(cursor.getInt(cursor.getColumnIndexOrThrow("movieid")));
+            mov.setUserid(cursor.getInt(cursor.getColumnIndexOrThrow("userid")));
+            mov.setTitle(cursor.getString(cursor.getColumnIndexOrThrow("title")));
+            mov.setSynopsis(cursor.getString(cursor.getColumnIndexOrThrow("synopsis")));
+            mov.setYear(cursor.getInt(cursor.getColumnIndexOrThrow("year")));
+
+        }
+        cursor.close();
+        db.close();
+
+        return mov;
+    }
+    public Review getReviewgivenId(int i)
+    {
+        String selectstatement = "SELECT * FROM " + reviews_table_name + " WHERE reviewid = " + i;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectstatement, null);
+
+        Review rev = new Review();
+
+        if(cursor.moveToFirst())
+        {
+
+            rev.setReviewid(cursor.getInt(cursor.getColumnIndexOrThrow("reviewid")));
+            rev.setMovieid(cursor.getInt(cursor.getColumnIndexOrThrow("movieid")));
+            rev.setUserid(cursor.getInt(cursor.getColumnIndexOrThrow("userid")));
+            rev.setScore(cursor.getInt(cursor.getColumnIndexOrThrow("score")));
+            rev.setText(cursor.getString(cursor.getColumnIndexOrThrow("text")));
+            rev.setDate(cursor.getString(cursor.getColumnIndexOrThrow("date")));
+
+        }
+        cursor.close();
+        db.close();
+
+        return rev;
+    }
+
+    public boolean userHasReview(int userid, int movieid)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT 1 FROM " + reviews_table_name +
+                " WHERE userid = " + userid +
+                " AND movieid = " + movieid;
+
+        Cursor c = db.rawQuery(query, null);
+        boolean hasReview = c.moveToFirst();
+
+        c.close();
+        db.close();
+        return hasReview;
+    }
+
+    public int getReviewId(int uid, int mid)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT reviewid FROM " + reviews_table_name +
+                " WHERE userid = " + uid +
+                " AND movieid = " + mid;
+
+        Cursor c = db.rawQuery(query, null);
+
+        int id = -1;
+        if (c.moveToFirst())
+        {
+            id = c.getInt(0);
+        }
+
+        c.close();
+        db.close();
+        return id;
+    }
+
+    public void updateUserDatabase(User u)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String updateStatement = "UPDATE " + users_table_name +
+                " SET username = '" + u.getUname() + "', " +
+                "password = '" + u.getPassword() + "', " +
+                "email = '" + u.getEmail() + "'" +
+                " WHERE userid = " + u.getId() + ";";
+
+        db.execSQL(updateStatement);
+        db.close();
+    }
+
+    public void updateMovieDatabase(Movie m)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String updatestatement = "UPDATE " + movies_table_name +
+                " SET title = '" + m.getTitle() + "', " +
+                "synopsis = '" + m.getSynopsis() + "', " +
+                "year = " + m.getYear() +
+                " WHERE movieid = '" + m.getMovieid() + "';";
+
+        db.execSQL(updatestatement);
+        db.close();
+    }
+
+    public void updateReviewDatabase(Review r)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String updatestatement = "UPDATE " + reviews_table_name +
+                " SET score = " + r.getScore() + ", " +
+                "text = '" + r.getText() + "', " +
+                "date = '" + r.getDate() + "' " +
+                " WHERE reviewid = '" + r.getReviewid() + "';";
+
+        db.execSQL(updatestatement);
+        db.close();
+    }
+
+    public double getAverageScoreForMovie(int mid)
+    {
+        double avg = 0;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT AVG(score) AS avgScore FROM " + reviews_table_name +
+                " WHERE movieid = " + mid;
+
+        Cursor c = db.rawQuery(query, null);
+
+        if (c.moveToFirst())
+        {
+            avg = c.getDouble(c.getColumnIndexOrThrow("avgScore"));
+        }
+
+        c.close();
+        db.close();
+
+        return avg;
     }
 }

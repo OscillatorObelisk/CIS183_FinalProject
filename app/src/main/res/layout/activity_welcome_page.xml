@@ -8,6 +8,17 @@
     tools:context=".WelcomePage">
 
     <Button
+        android:id="@+id/btn_v_welcome_updateuser"
+        android:layout_width="148dp"
+        android:layout_height="83dp"
+        android:layout_marginBottom="44dp"
+        android:text="View/Update User Info"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/btn_v_welcome_search"
         android:layout_width="0dp"
         android:layout_height="83dp"
@@ -43,11 +54,11 @@
         android:id="@+id/tv_v_welcome_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
-        android:layout_marginBottom="291dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="542dp"
         android:text="Welcome &quot;user&quot;"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_v_welcome_movies"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_welcome_updateuser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -61,14 +72,5 @@
         android:text="Your Movies"
         app:layout_constraintBottom_toTopOf="@+id/btn_v_welcome_reviews"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        app:labelVisibilityMode="auto"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_nav_menu"
-        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

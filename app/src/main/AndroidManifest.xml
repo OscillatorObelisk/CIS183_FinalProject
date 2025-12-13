@@ -12,7 +12,40 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CIS183_FinalProject">
         <activity
-            android:name=".NewUser"
+            android:name=".UpdateUser"
+            android:exported="false" />
+        <activity
+            android:name=".SearchReviews"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateReview"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateMovie"
+            android:exported="false" />
+        <activity
+            android:name=".AddReview"
+            android:exported="false" />
+        <activity
+            android:name=".ReviewInfo"
+            android:exported="false" />
+        <activity
+            android:name=".MovieInfo"
+            android:exported="false" />
+        <activity
+            android:name=".YourReviews"
+            android:exported="false" />
+        <activity
+            android:name=".SearchMovies"
+            android:exported="false" />
+        <activity
+            android:name=".AddMovie"
+            android:exported="false" />
+        <activity
+            android:name=".YourMovies"
+            android:exported="false" />
+        <activity
+            android:name=".AddUser"
             android:exported="false" />
         <activity
             android:name=".WelcomePage"

@@ -1,5 +1,6 @@
 package com.example.cis183_finalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,7 @@ public class WelcomePage extends AppCompatActivity {
     Button btn_j_movies;
     Button btn_j_reviews;
     Button btn_j_search;
+    Button btn_j_update;
     TextView tv_j_user;
 
     @Override
@@ -36,14 +38,26 @@ public class WelcomePage extends AppCompatActivity {
         btn_j_movies = findViewById(R.id.btn_v_welcome_movies);
         btn_j_reviews = findViewById(R.id.btn_v_welcome_reviews);
         btn_j_search = findViewById(R.id.btn_v_welcome_search);
+        btn_j_update = findViewById(R.id.btn_v_welcome_updateuser);
         tv_j_user = findViewById(R.id.tv_v_welcome_user);
 
         //set text for user's profile
-        String loggedUserText = SessionData.getLoggedInUser().getUname() + "'s' Profile";
-        tv_j_user.setText(loggedUserText);
+        setProfileText();
 
         setOnClickListeners();
 
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        setProfileText();
+    }
+
+    private void setProfileText()
+    {
+        String loggedUserText = SessionData.getLoggedInUser().getUname() + "'s' Profile";
+        tv_j_user.setText(loggedUserText);
     }
 
     private void setOnClickListeners()
@@ -55,6 +69,34 @@ public class WelcomePage extends AppCompatActivity {
             {
                 SessionData.setLoggedInUser(null);
                 finish();
+            }
+        });
+        //View Your Movies button
+        btn_j_movies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(WelcomePage.this, YourMovies.class));
+            }
+        });
+        //View Your Reviews Button
+        btn_j_reviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(WelcomePage.this, YourReviews.class));
+            }
+        });
+        //Search Movies button
+        btn_j_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(WelcomePage.this, SearchMovies.class));
+            }
+        });
+        //view/update user info
+        btn_j_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(WelcomePage.this, UpdateUser.class));
             }
         });
     }

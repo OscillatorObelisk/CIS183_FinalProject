@@ -1,3 +1,10 @@
+//===================================================================
+//Name:Nicholas Voigt
+//Date:12/14/25
+//Desc:Letterboxd like app for indie film directors
+//===================================================================
+
+
 package com.example.cis183_finalproject;
 
 import android.content.Intent;
@@ -12,8 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -98,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                startActivity(new Intent(MainActivity.this, NewUser.class));
+                startActivity(new Intent(MainActivity.this, AddUser.class));
 
                 tv_j_error.setVisibility(View.INVISIBLE);
             }
