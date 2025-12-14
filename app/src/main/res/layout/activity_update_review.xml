@@ -64,6 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginBottom="177dp"
+        android:backgroundTint="#B62A2A"
         android:text="back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -74,6 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="47dp"
         android:layout_marginBottom="182dp"
+        android:backgroundTint="#B62A2A"
         android:text="update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

@@ -56,6 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="52dp"
         android:layout_marginBottom="83dp"
+        android:backgroundTint="#B62A2A"
         android:text="update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -107,6 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="49dp"
+        android:backgroundTint="#B62A2A"
         android:text="back"
         app:layout_constraintBottom_toBottomOf="@+id/btn_v_updateuser_update"
         app:layout_constraintStart_toStartOf="parent"

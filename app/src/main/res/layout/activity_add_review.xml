@@ -59,20 +59,22 @@
 
     <Button
         android:id="@+id/btn_v_addreview_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="119dp"
+        android:layout_height="77dp"
         android:layout_marginStart="39dp"
         android:layout_marginBottom="111dp"
+        android:backgroundTint="#B62A2A"
         android:text="back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_v_addreview_post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="122dp"
+        android:layout_height="81dp"
         android:layout_marginEnd="56dp"
         android:layout_marginBottom="108dp"
+        android:backgroundTint="#B62A2A"
         android:text="post review"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

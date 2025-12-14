@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:backgroundTint="#B62A2A"
         android:text="delete"
         app:layout_constraintBottom_toBottomOf="@+id/btn_v_reviewinfo_edit"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,6 +22,7 @@
         android:id="@+id/btn_v_reviewinfo_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#B62A2A"
         android:text="edit"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_v_reviewinfo_back"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,6 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
         android:layout_marginBottom="78dp"
+        android:backgroundTint="#B62A2A"
         android:text="back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
