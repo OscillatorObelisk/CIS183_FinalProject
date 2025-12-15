@@ -62,6 +62,7 @@ public class SearchMovies extends AppCompatActivity {
         setOnClickListener();
         setOnClickListenerListview();
     }
+    @Override
     protected void onResume() {
         super.onResume();
 

@@ -9,6 +9,7 @@
         android:id="@+id/tv_v_moviecell_year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/arya"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="@+id/tv_v_moviecell_creator"
         app:layout_constraintTop_toBottomOf="@+id/tv_v_moviecell_creator" />
@@ -19,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
         android:layout_marginTop="29dp"
+        android:fontFamily="@font/arya"
         android:text="TextView"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,6 +30,7 @@
         android:id="@+id/tv_v_moviecell_creator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/arya"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="@+id/tv_v_moviecell_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_v_moviecell_title" />
@@ -38,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="28dp"
+        android:fontFamily="@font/arya"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/tv_v_moviecell_title"
         app:layout_constraintTop_toTopOf="parent" />

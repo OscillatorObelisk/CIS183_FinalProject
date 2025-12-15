@@ -14,6 +14,7 @@
         android:layout_marginStart="44dp"
         android:layout_marginBottom="80dp"
         android:backgroundTint="#B62A2A"
+        android:fontFamily="@font/arya"
         android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="34dp"
+        android:fontFamily="sans-serif-black"
         android:text="Your Reviews"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/listView2"

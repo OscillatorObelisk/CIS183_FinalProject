@@ -14,6 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="12dp"
         android:backgroundTint="#B62A2A"
+        android:fontFamily="@font/arya"
         android:text="make a review"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -25,6 +26,7 @@
         android:layout_marginEnd="52dp"
         android:layout_marginBottom="100dp"
         android:backgroundTint="#B62A2A"
+        android:fontFamily="@font/arya"
         android:text="delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -36,6 +38,7 @@
         android:layout_marginEnd="52dp"
         android:layout_marginBottom="180dp"
         android:backgroundTint="#B62A2A"
+        android:fontFamily="@font/arya"
         android:text="edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:layout_marginBottom="72dp"
+        android:fontFamily="sans-serif-black"
         android:text="movie name"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,6 +75,7 @@
                 android:id="@+id/tv_v_movieinfo_synopsis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/arya"
                 android:text="TextView" />
         </LinearLayout>
     </ScrollView>
@@ -82,6 +87,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#B62A2A"
+        android:fontFamily="@font/arya"
         android:text="back"
         app:layout_constraintBottom_toTopOf="@+id/btn_v_movieinfo_viewreviews"
         app:layout_constraintStart_toStartOf="parent" />
@@ -93,6 +99,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginBottom="80dp"
         android:backgroundTint="#B62A2A"
+        android:fontFamily="@font/arya"
         android:text="your review"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -104,6 +111,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginBottom="12dp"
         android:backgroundTint="#B62A2A"
+        android:fontFamily="@font/arya"
         android:text="view reviews"
         app:layout_constraintBottom_toTopOf="@+id/btn_v_movieinfo_yourreview"
         app:layout_constraintStart_toStartOf="parent" />
@@ -114,6 +122,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="72dp"
+        android:fontFamily="@font/arya"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -126,6 +135,7 @@
         android:layout_marginEnd="16dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="@font/arya" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

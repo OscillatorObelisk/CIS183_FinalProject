@@ -48,6 +48,11 @@ public class YourReviews extends AppCompatActivity {
         setOnClickListeners();
         setOnClickListenerListview();
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fillListView();
+    }
 
     private void setOnClickListeners()
     {

@@ -14,7 +14,9 @@
         android:layout_marginEnd="52dp"
         android:layout_marginBottom="112dp"
         android:backgroundTint="#B62A2A"
+        android:fontFamily="@font/arya"
         android:text="Register"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -23,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="34dp"
+        android:fontFamily="@font/arya"
         android:text="Password"
         app:layout_constraintBottom_toTopOf="@+id/et_v_main_password"
         app:layout_constraintEnd_toEndOf="@+id/et_v_main_username"
@@ -47,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="148dp"
+        android:fontFamily="sans-serif-black"
         android:text="Welcome to NOT Letterboxd!"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +64,9 @@
         android:layout_marginStart="52dp"
         android:layout_marginBottom="112dp"
         android:backgroundTint="#B62A2A"
+        android:fontFamily="@font/arya"
         android:text="Login"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -81,6 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="29dp"
+        android:fontFamily="@font/arya"
         android:text="Username"
         app:layout_constraintBottom_toTopOf="@+id/et_v_main_username"
         app:layout_constraintEnd_toEndOf="parent"

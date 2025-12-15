@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:backgroundTint="#B62A2A"
+        android:fontFamily="@font/arya"
         android:text="delete"
         app:layout_constraintBottom_toBottomOf="@+id/btn_v_reviewinfo_edit"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#B62A2A"
+        android:fontFamily="@font/arya"
         android:text="edit"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_v_reviewinfo_back"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
+        android:fontFamily="sans-serif-black"
         android:text="Review"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
         android:layout_marginTop="273dp"
+        android:fontFamily="@font/arya"
         android:text="by: "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -79,6 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
+        android:fontFamily="@font/arya"
         android:text="Posted on:"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_v_reviewinfo_date"
         app:layout_constraintStart_toStartOf="parent" />
@@ -89,6 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
         android:layout_marginBottom="12dp"
+        android:fontFamily="@font/arya"
         android:text="score goes here"
         app:layout_constraintBottom_toTopOf="@+id/scrollView8"
         app:layout_constraintStart_toStartOf="parent" />
@@ -99,6 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="1dp"
+        android:fontFamily="@font/arya"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView21"
         app:layout_constraintTop_toTopOf="@+id/textView21" />
@@ -109,6 +116,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="46dp"
+        android:fontFamily="@font/arya"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView22"
         app:layout_constraintTop_toBottomOf="@+id/tv_v_reviewinfo_author" />
@@ -120,6 +128,7 @@
         android:layout_marginStart="18dp"
         android:layout_marginBottom="78dp"
         android:backgroundTint="#B62A2A"
+        android:fontFamily="@font/arya"
         android:text="back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

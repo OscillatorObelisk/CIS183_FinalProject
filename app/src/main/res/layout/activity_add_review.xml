@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
+        android:fontFamily="@font/arya"
         android:text="Write a review:"
         app:layout_constraintBaseline_toBaselineOf="@+id/et_v_addreview_text"
         app:layout_constraintStart_toStartOf="parent" />
@@ -21,6 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif-black"
         android:text="Leave A Review"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
+        android:fontFamily="@font/arya"
         android:text="Score:"
         app:layout_constraintBaseline_toBaselineOf="@+id/sp_v_addreview_score"
         app:layout_constraintStart_toStartOf="parent" />
@@ -64,6 +67,7 @@
         android:layout_marginStart="39dp"
         android:layout_marginBottom="111dp"
         android:backgroundTint="#B62A2A"
+        android:fontFamily="@font/arya"
         android:text="back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -75,6 +79,7 @@
         android:layout_marginEnd="56dp"
         android:layout_marginBottom="108dp"
         android:backgroundTint="#B62A2A"
+        android:fontFamily="@font/arya"
         android:text="post review"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
